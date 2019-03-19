@@ -54,8 +54,8 @@ object KafkaStreamToCassandra {
 //    val INPUT_TOPIC = args(2) //"aaa-devicemessages"
 //    val OUTPUT_TOPIC = args(3) //"aaa-speedanalysis"
 
-    val CASSANDRA_HOST = "DIBINLALTP-605" //localhost"//"192.168.65.146" //args(0)
-    val KAFKA_SERVERS = "JESMIPK-615:9092" // "192.168.65.175:9092"//"172.30.100.208:9092" //172.30.100.208:9092" //args(1) //
+    val CASSANDRA_HOST = "localhost"//"192.168.65.146" //args(0)
+    val KAFKA_SERVERS = "localhost:9092" // "192.168.65.175:9092"//"172.30.100.208:9092" //172.30.100.208:9092" //args(1) //
     val INPUT_TOPIC = "aaa-devicemessages" //args(2)
     val OUTPUT_TOPIC = "aaa-speedanalysis" //args(3)
 
@@ -71,7 +71,7 @@ object KafkaStreamToCassandra {
     // Create the context with a 1 second batch size
     //val ssc = new StreamingContext("local[*]", "Kafka Streaming", Seconds(1))
     val conf = new SparkConf()
-      .setMaster("local[*]")
+      .setMaster("local[2]")
       .setAppName("KafkaStreamToCassandra")
       .set("spark.cassandra.connection.host", CASSANDRA_HOST)
     val ssc = new StreamingContext(conf, Seconds(1))
